@@ -5,98 +5,112 @@
 #
 import cv2 as cv
 import matplotlib.pyplot as plt
-import os
 
 # 
 ########################################################################
 # Definições Gerais
 ########################################################################
 #
-BaseDir = "LocalCV/"
-NomeJanela = "Imagem Base"
-NomeImagem  = "Girassol.png"
-CaminhoBase = "/home/asoares/" + BaseDir
-CaminhoImagem = CaminhoBase + "Imagens/"  
+def main():
+    NomeJanela = "Imagem Base"
+    NomeImagem  = "Girassol.png"
 
-# 
-########################################################################
-# Lendo a Imagem
-########################################################################
-#
-imgGirassolAzul = cv.imread ( CaminhoImagem + "GirassolAzul.png", cv.IMREAD_UNCHANGED)
-imgGirassolVerde = cv.imread ( CaminhoImagem + "GirassolVerde.png", cv.IMREAD_UNCHANGED)
-imgGirassolVermelho = cv.imread ( CaminhoImagem + "GirassolVermelho.png", cv.IMREAD_UNCHANGED)
+    # 
+    ########################################################################
+    # Lendo a Imagem
+    ########################################################################
+    #
+    imgBase = cv.imread ( "../../Imagens/Girassol.png", cv.IMREAD_UNCHANGED)
 
-# 
-########################################################################
-# Checando se a Imagem Foi Lida com Sucesso
-########################################################################
-#
-if imgGirassolAzul is None:
-    os.system ("clear")
-    print( "Não Foi Localizada a Imagem : ", "GirassolAzul.png" )
-    exit ()
+    # 
+    ########################################################################
+    # Checando se a Imagem Foi Lida com Sucesso
+    ########################################################################
+    #
+    if imgBase is None:
+        print( "Não Foi Localizada a Imagem : ", NomeImagem )
+        exit ()
+    NomeJanela = "Imagem Base"
+    NomeImagem  = "Girassol.png"
 
-if imgGirassolVerde is None:
-    os.system ("clear")
-    print( "Não Foi Localizada a Imagem : ", "imgGirassolVerde" )
-    exit ()
+    # 
+    ########################################################################
+    # Lendo a Imagem
+    ########################################################################
+    #
+    imgGirassolAzul = cv.imread ( "../../Imagens/GirassolAzul.png", cv.IMREAD_UNCHANGED)
+    imgGirassolVerde = cv.imread ( "../../Imagens/GirassolVerde.png", cv.IMREAD_UNCHANGED)
+    imgGirassolVermelho = cv.imread ( "../../Imagens/GirassolVermelho.png", cv.IMREAD_UNCHANGED)
 
-if imgGirassolVermelho is None:
-    os.system ("clear")
-    print( "Não Foi Localizada a Imagem : ", "GirassolVermelho.png" )
-    exit ()
+    # 
+    ########################################################################
+    # Checando se a Imagem Foi Lida com Sucesso
+    ########################################################################
+    #
+    if imgGirassolAzul is None:
+        print( "Não Foi Localizada a Imagem : ", "GirassolAzul.png" )
+        exit ()
 
-# 
-########################################################################
-# Montando a Imagem a Partir dos Canais
-########################################################################
-#
-ImagemColorida = cv.merge ([imgGirassolVermelho, imgGirassolVerde, imgGirassolAzul])
+    if imgGirassolVerde is None:
+        print( "Não Foi Localizada a Imagem : ", "GirassolVerde.png" )
+        exit ()
 
-# 
-########################################################################
-# Convertendo para Matplotlib
-########################################################################
-#
-#ImagemColorida = cv.cvtColor(ImagemColorida, cv.COLOR_BGR2RGB)
-imgAzul = cv.cvtColor(imgGirassolAzul, cv.COLOR_BGR2RGB)
-imgVerde = cv.cvtColor(imgGirassolVerde, cv.COLOR_BGR2RGB)
-imgVermelho = cv.cvtColor(imgGirassolVermelho, cv.COLOR_BGR2RGB)
+    if imgGirassolVermelho is None:
+        print( "Não Foi Localizada a Imagem : ", "GirassolVermelho.png" )
+        exit ()
 
-# 
-########################################################################
-# Apresentação dos Resultados
-########################################################################
-#
-Grafico = plt.figure(figsize=(15,8))
+    # 
+    ########################################################################
+    # Montando a Imagem a Partir dos Canais
+    ########################################################################
+    #
+    ImagemColorida = cv.merge ([imgGirassolVermelho, imgGirassolVerde, imgGirassolAzul])
 
-Grafico.add_subplot(1,4,1)
-plt.imshow(ImagemColorida )
-plt.title("Imagem\nReconstruída")
+    # 
+    ########################################################################
+    # Convertendo para Matplotlib
+    ########################################################################
+    #
+    #ImagemColorida = cv.cvtColor(ImagemColorida, cv.COLOR_BGR2RGB)
+    imgAzul = cv.cvtColor(imgGirassolAzul, cv.COLOR_BGR2RGB)
+    imgVerde = cv.cvtColor(imgGirassolVerde, cv.COLOR_BGR2RGB)
+    imgVermelho = cv.cvtColor(imgGirassolVermelho, cv.COLOR_BGR2RGB)
 
-Grafico.add_subplot(1,4,2)
-plt.imshow(imgAzul )
-plt.title("Canal Azul")
+    # 
+    ########################################################################
+    # Apresentação dos Resultados
+    ########################################################################
+    #
+    Grafico = plt.figure(figsize=(15,8))
 
-Grafico.add_subplot(1,4,3)
-plt.imshow(imgVerde )
-plt.title("Canal Verde")
+    Grafico.add_subplot(1,4,1)
+    plt.imshow(ImagemColorida )
+    plt.title("Imagem\nReconstruída")
 
-Grafico.add_subplot(1,4,4)
-plt.imshow(imgVermelho )
-plt.title("Canal Vermelho")
+    Grafico.add_subplot(1,4,2)
+    plt.imshow(imgAzul )
+    plt.title("Canal Azul")
 
-plt.subplots_adjust ( left   = 0.1,
-                      bottom = 0.1,
-                      right  = 0.9,
-                      top    = 0.9,
-                      wspace = 0.1,
-                      hspace = 0.1 )
+    Grafico.add_subplot(1,4,3)
+    plt.imshow(imgVerde )
+    plt.title("Canal Verde")
 
-plt.show ()
+    Grafico.add_subplot(1,4,4)
+    plt.imshow(imgVermelho )
+    plt.title("Canal Vermelho")
 
-########################################################################
-# FIM DO PROGRAMA
-########################################################################
+    plt.subplots_adjust ( left   = 0.1,
+                        bottom = 0.1,
+                        right  = 0.9,
+                        top    = 0.9,
+                        wspace = 0.1,
+                        hspace = 0.1 )
 
+    plt.show ()
+
+    ########################################################################
+    # FIM DO PROGRAMA
+    ########################################################################
+
+if __name__ == "__main__":
+    main()

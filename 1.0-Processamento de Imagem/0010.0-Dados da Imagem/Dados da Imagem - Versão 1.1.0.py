@@ -1,78 +1,68 @@
-# 
 ########################################################################
 # Importação das Bibliotecas Necessárias
 ########################################################################
-#
-import cv2 as cv
-import sys
+import cv2 as cv #opencv
 import os
-from pathlib import Path
-
-# 
-########################################################################
-# Funções de Apoio
-########################################################################
-#
-def LimpaTerminal ():
-    if os.name == "nt":
-       _ = os.system( "cls" )
-    else:
-      _ = os.system( "clear ")
-    return ()
-
-# 
 ########################################################################
 # Definições Gerais
 ########################################################################
-#
-NomeImagem  = "Girassol.png"
-dirRaiz = Path.home()
-dirBase = "Atividades/LocalCV"
-dirImagem = "Imagens"  
-dirCaminhoImagem = str(Path(dirRaiz, dirBase, dirImagem, NomeImagem))
 
-# 
-########################################################################
-# Lendo a Imagem
-########################################################################
-#
-imgBase = cv.imread ( dirCaminhoImagem, cv.IMREAD_COLOR)
 
-# 
-########################################################################
-# Checando se a Imagem Foi Lida com Sucesso
-########################################################################
-#
-if imgBase is None:
-   LimpaTerminal ()
-   print( "Não Foi Localizada a Imagem : ", NomeImagem)
-   exit ()
+def listar_imagens(pasta_relativa ="../../Imagens"):
+      pasta_atual = os.path.dirname(os.path.abspath(__file__))
+      pasta_alvo = os.path.abspath(os.path.join(pasta_atual, pasta_relativa))
+      with os.scandir(pasta_alvo) as entradas:
+        for entrada in entradas:
+            if entrada.is_file() and entrada.name.lower().endswith((".jpg", ".png")):
+                print(entrada.name)
 
-# 
-########################################################################
-# Recuperando os Dados da Imagem
-########################################################################
-#
-ImagemAltura = imgBase.shape[0]
-ImagemLargura  = imgBase.shape[1]
-ImagemNumCanais = imgBase.shape[2]
+def main():
+   
+   print("########################### Lista de Imagens Disponíveis #############################")
+   listar_imagens()
 
-# 
-########################################################################
-# Apresentando os Dados da Imagem
-########################################################################
-#
-LimpaTerminal ()
-print ("")
-print ("#######################################################################")
-print ("# Dados da Imagem : " + NomeImagem)
-print ("#######################################################################")
-print ("# Largura da Imagem (pixel) ..: ", ImagemLargura )
-print ("# Altura da Imagem (pixel) ...: ", ImagemAltura )
-print ("# Número de Canais ...........: ", ImagemNumCanais )
-print ("#######################################################################")
-print ("")
+   variavelImagem = input("Digite o Nome da Imagem desejada com extensão: ").strip()
+   print ("")
+   NomeImagem = "../../Imagens/" + variavelImagem
+   ########################################################################
+   # Lendo a Imagem
+   ########################################################################
+   imgBase = cv.imread(NomeImagem, cv.IMREAD_COLOR)
+   
+   ########################################################################
+   # Checando se a Imagem Foi Lida com Sucesso
+   ########################################################################
+   if imgBase is None:
+      print("Não Foi Localizada a Imagem : ")
+      exit()
 
+   ########################################################################
+   # Recuperando os Dados da Imagem
+   ########################################################################
+   # O .shape retorna uma tupla com as dimensoes da imagem, (altura, largura, canais(quantidade))
+
+   ImagemAltura = imgBase.shape[0]
+   ImagemLargura  = imgBase.shape[1]
+   ImagemNumCanais = imgBase.shape[2]  
+
+   # 
+   ########################################################################
+   # Apresentando os Dados da Imagem
+   ########################################################################
+   #
+   print ("")
+   print ("#######################################################################")
+   print ("# Dados da Imagem : " + NomeImagem)
+   print ("#######################################################################")
+   print ("# Largura da Imagem (pixel) ..: ", ImagemLargura )
+   print ("# Altura da Imagem (pixel) ...: ", ImagemAltura )
+   print ("# Número de Canais ...........: ", ImagemNumCanais )
+   print ("#######################################################################")
+   print ("")
 ########################################################################
 # FIM DO PROGRAMA
 ########################################################################
+
+if __name__ == "__main__":
+   main()
+

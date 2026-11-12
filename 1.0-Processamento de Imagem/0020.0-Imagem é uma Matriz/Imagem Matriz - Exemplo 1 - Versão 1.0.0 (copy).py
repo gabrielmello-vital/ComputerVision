@@ -27,11 +27,8 @@ def LimpaTerminal ():
 # Definições Gerais
 ########################################################################
 #
-NomeImagem = "Adicao.png"
-dirRaiz = Path.home()
-dirBase = "/home/asoares/Insync/alexandre.asoares@gmail.com/OneDrive/Atividades/LocalCV"
-dirImagem = "Imagens"  
-dirCaminhoImagem = str(Path(dirRaiz, dirBase, dirImagem, NomeImagem))
+NomeImagem = "Adicao.png" 
+dirCaminhoImagem = "../../Imagens/" + NomeImagem
 
 # 
 ########################################################################
@@ -57,101 +54,39 @@ if imgBase is None:
 #
 imgColorida = cv.cvtColor(imgBase, cv.COLOR_BGR2RGB)
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-def my_function1(df):
-    bruto = plt.imshow( imgColorida )
-    plt.title("Original", fontsize=11, weight='bold' )
-    return bruto
+def desenhar_imagem(espaco,imagem):
+    espaco.imshow( imgColorida ) # Pega a matriz numpy e renderiza os numeros como pixel visuais que formam a imagem
+    espaco.set_title("Original", fontsize=11, weight='bold' ) #sempre sabe qual foi o ultimo grafico gerado e atribui o titulo
 
-def my_function2(df):
+
+def desenhar_mapa_de_calor(espaco,imagem):
     heatmap=sns.heatmap (  
                            imgBase, 
-                           annot=True, 
-                           fmt="d", 
-                           linewidth=1, 
-                           cbar=False, 
-                           annot_kws={"size": 8},
-                           #cmap="blue", 
-                           square=True, 
-                           linecolor="k" 
-                        )
+                           annot=True, #valor numerico exato de cada pixel de 0 a 255
+                           fmt="d",    #formato decimal
+                           linewidth=1, #espessura da linha que separa cada pixel
+                           cbar=True, #não exibe ou exibe a barra de cores
+                           annot_kws={"size": 8}, #um dicionario de configuracoes extras para o texto, nesse caso o tamanho da fonte passa a ser 8
+                           #cmap="blue", #paleta de cores, nesse caso está comentada, então o padrão
+                           square=True, #força cada celula da matriz ser um quadrado 1x1
+                           linecolor="k", #cor da linha que separa cada pixel, nesse caso preto blac(K)
+                           ax=espaco,
+                        ) # basicamente fazendo o mapa de calor d
     
-    plt.title("Visão Matricial da Imagem", fontsize=11, weight='bold' )
-    return heatmap
+    espaco.set_title("Visão Matricial da Imagem", fontsize=11, weight='bold' )
+    
 
-df = pd.DataFrame(np.random.rand(100).reshape(10,10))
 
-Grafico = plt.figure()
+Grafico = plt.figure() #Abriu uma figura(quadro em branco) para colocar os graficos
 
-Grafico.add_subplot(1,2,1)
-bruto = my_function1(df)
-# bruto.set_title("Imagem 1")
-
-Grafico.add_subplot(1,2,2)
-heatmap = my_function2(df)
-# heatmap.set_title("Imagem 2")
+espaco1 = Grafico.add_subplot(1,2,1) #Recorta a figura em 1 linha e 2 colunas, e seleciona o primeiro quadrante para colocar o grafico
+espaco2 = Grafico.add_subplot(1,2,2)
+desenhar_imagem(espaco1,imgColorida)
+desenhar_mapa_de_calor(espaco2,imgBase)
 
 plt.show()
-
 exit()
-
-
-def Mostra (imgBase):
-    bruto = plt.imshow(imgBase )
-    plt.title("Original", fontsize=11, weight='bold' )
-    return (bruto)
-
-def my_function(imgBase):
-   #  plt.figure()
-    heatmap=sns.heatmap (  
-                           imgBase, 
-                           annot=True, 
-                           fmt="d", 
-                           linewidth=1, 
-                           cbar=False, 
-                           annot_kws={"size": 8},
-                           #cmap="blue", 
-                           square=True, 
-                           linecolor="k" 
-                        )
-    
-    plt.title("Visão Matricial da Imagem", fontsize=11, weight='bold' )
-    return heatmap
-
-# 
-########################################################################
-# Apresentação dos Resultados
-########################################################################
-#
-Grafico = plt.figure()
-
-Grafico.add_subplot(1,2,1)
-# plt.imshow(imgColorida )
-# plt.title("Original", fontsize=11, weight='bold' )
-plt.figure()
-bruto = Mostra (imgColorida)
-
-Grafico.add_subplot(1,2,2)
-# plt.title("Visão Matricial da Imagem", fontsize=11, weight='bold' )
-# sns.heatmap ( imgBase, 
-#               annot=True, 
-#               fmt="d", 
-#               linewidth=1, 
-#               cbar=False, 
-#               annot_kws={"size": 8},
-#               #cmap="blue", 
-#               square=True, 
-#               linecolor="k" )
-
-heatmap = my_function(imgBase)
-# heatmap.set_title("my_function call with df")
-
-plt.tight_layout()
-plt.show()
 
 ########################################################################
 # FIM DO PROGRAMA
