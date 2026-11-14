@@ -5,36 +5,20 @@
 #
 import cv2 as cv
 import numpy as np
-import os
 import matplotlib.pyplot as plt
-from pathlib import Path
 import seaborn as sns 
 
-# 
-########################################################################
-# Funções de Apoio
-########################################################################
-#
-def LimpaTerminal ():
-    if os.name == "nt":
-       _ = os.system( "cls" )
-    else:
-      _ = os.system( "clear ")
-    return ()
-
-# 
 ########################################################################
 # Definições Gerais
 ########################################################################
-#
+
 NomeImagem = "Adicao.png"
 NomeOutput = "AdicaoOut.txt"
-dirRaiz = Path.home()
-dirBase = "LocalCV"
 dirImagem = "Imagens"  
 dirOutput = "Output"
-dirCaminhoImagem = str(Path(dirRaiz, dirBase, dirImagem, NomeImagem))
-dirCaminhoOutput = str(Path(dirRaiz, dirBase, dirOutput, NomeOutput))
+dirAula = "1.0-Processamento de Imagem/0020.0-Imagem é uma Matriz"
+dirCaminhoImagem = f"./Imagens/{NomeImagem}"
+dirCaminhoOutput = f"./{dirAula}/{NomeOutput}"
 
 # 
 ########################################################################
@@ -42,25 +26,25 @@ dirCaminhoOutput = str(Path(dirRaiz, dirBase, dirOutput, NomeOutput))
 ########################################################################
 #
 imgBase = cv.imread ( dirCaminhoImagem, cv.IMREAD_GRAYSCALE)
-
-# 
+#
 ########################################################################
 # Checando se a Imagem Foi Lida com Sucesso
 ########################################################################
 #
 if imgBase is None:
-   LimpaTerminal ()
+  
    print( "Não Foi Localizada a Imagem : ", NomeImagem)
    exit ()
 
-# 
 ########################################################################
 # Apresentando a Matriz
 ########################################################################
-#
-LimpaTerminal ()
+
 fleOut = open(dirCaminhoOutput, 'w')
-for row in imgBase:
+# Como o cv.imread devolve a imagem como uma matriz NumPy 2D (em escala de cinza),
+# o for percorre essa matriz linha por linha: cada "row" é um vetor com as
+# intensidades (0–255) dos pixels daquela linha, que é gravado no arquivo de saída
+for row in imgBase: 
     print('|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|{:03}|'.format(*row),  file=fleOut)
 
 ########################################################################

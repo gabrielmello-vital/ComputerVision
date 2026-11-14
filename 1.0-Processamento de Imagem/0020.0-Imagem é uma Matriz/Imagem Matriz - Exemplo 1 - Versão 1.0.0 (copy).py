@@ -4,31 +4,15 @@
 ########################################################################
 #
 import cv2 as cv
-import numpy as np
-import os
 import matplotlib.pyplot as plt
-from pathlib import Path
 import seaborn as sns 
 
-# 
-########################################################################
-# Funções de Apoio
-########################################################################
-#
-def LimpaTerminal ():
-    if os.name == "nt":
-       _ = os.system( "cls" )
-    else:
-      _ = os.system( "clear ")
-    return ()
-
-# 
 ########################################################################
 # Definições Gerais
 ########################################################################
 #
 NomeImagem = "Adicao.png" 
-dirCaminhoImagem = "../../Imagens/" + NomeImagem
+dirCaminhoImagem = "./Imagens/" + NomeImagem
 
 # 
 ########################################################################
@@ -43,7 +27,6 @@ imgBase = cv.imread ( dirCaminhoImagem, cv.IMREAD_GRAYSCALE)
 ########################################################################
 #
 if imgBase is None:
-   LimpaTerminal ()
    print( "Não Foi Localizada a Imagem : ", NomeImagem)
    exit ()
 
@@ -52,10 +35,8 @@ if imgBase is None:
 # Convertendo para Matplotlib
 ########################################################################
 #
-imgColorida = cv.cvtColor(imgBase, cv.COLOR_BGR2RGB)
 
-
-def desenhar_imagem(espaco,imagem):
+def desenhar_imagem(espaco,imgColorida):
     espaco.imshow( imgColorida ) # Pega a matriz numpy e renderiza os numeros como pixel visuais que formam a imagem
     espaco.set_title("Original", fontsize=11, weight='bold' ) #sempre sabe qual foi o ultimo grafico gerado e atribui o titulo
 
@@ -66,7 +47,7 @@ def desenhar_mapa_de_calor(espaco,imagem):
                            annot=True, #valor numerico exato de cada pixel de 0 a 255
                            fmt="d",    #formato decimal
                            linewidth=1, #espessura da linha que separa cada pixel
-                           cbar=True, #não exibe ou exibe a barra de cores
+                           cbar=False, #não exibe ou exibe a barra de cores
                            annot_kws={"size": 8}, #um dicionario de configuracoes extras para o texto, nesse caso o tamanho da fonte passa a ser 8
                            #cmap="blue", #paleta de cores, nesse caso está comentada, então o padrão
                            square=True, #força cada celula da matriz ser um quadrado 1x1
@@ -77,7 +58,7 @@ def desenhar_mapa_de_calor(espaco,imagem):
     espaco.set_title("Visão Matricial da Imagem", fontsize=11, weight='bold' )
     
 
-
+imgColorida = cv.cvtColor(imgBase, cv.COLOR_BGR2RGB)
 Grafico = plt.figure() #Abriu uma figura(quadro em branco) para colocar os graficos
 
 espaco1 = Grafico.add_subplot(1,2,1) #Recorta a figura em 1 linha e 2 colunas, e seleciona o primeiro quadrante para colocar o grafico

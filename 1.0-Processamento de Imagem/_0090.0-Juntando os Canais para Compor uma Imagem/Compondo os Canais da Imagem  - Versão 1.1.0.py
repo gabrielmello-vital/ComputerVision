@@ -20,7 +20,7 @@ def main():
     # Lendo a Imagem
     ########################################################################
     #
-    imgBase = cv.imread ( "../../Imagens/Girassol.png", cv.IMREAD_UNCHANGED)
+    imgBase = cv.imread ( "./Imagens/Girassol.png", cv.IMREAD_UNCHANGED)
 
     # 
     ########################################################################
@@ -38,9 +38,9 @@ def main():
     # Lendo a Imagem
     ########################################################################
     #
-    imgGirassolAzul = cv.imread ( "../../Imagens/GirassolAzul.png", cv.IMREAD_UNCHANGED)
-    imgGirassolVerde = cv.imread ( "../../Imagens/GirassolVerde.png", cv.IMREAD_UNCHANGED)
-    imgGirassolVermelho = cv.imread ( "../../Imagens/GirassolVermelho.png", cv.IMREAD_UNCHANGED)
+    imgGirassolAzul = cv.imread ( "./Imagens/GirassolAzul.png", cv.IMREAD_UNCHANGED)
+    imgGirassolVerde = cv.imread ( "./Imagens/GirassolVerde.png", cv.IMREAD_UNCHANGED)
+    imgGirassolVermelho = cv.imread ( "./Imagens/GirassolVermelho.png", cv.IMREAD_UNCHANGED)
 
     # 
     ########################################################################
