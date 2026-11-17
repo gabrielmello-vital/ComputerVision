@@ -18,7 +18,7 @@ dirImagem = "Imagens"
 dirOutput = "Output"
 dirAula = "1.0-Processamento de Imagem/0020.0-Imagem é uma Matriz"
 dirCaminhoImagem = f"./Imagens/{NomeImagem}"
-dirCaminhoOutput = f"./{dirAula}/{NomeOutput}"
+dirCaminhoOutput = f"./{dirAula}/{dirOutput}/{NomeOutput}"
 
 # 
 ########################################################################
