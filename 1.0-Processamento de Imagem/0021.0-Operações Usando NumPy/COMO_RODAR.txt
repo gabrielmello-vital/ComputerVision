@@ -6,8 +6,7 @@ O que precisa estar instalado antes:
   - Python 3 (https://www.python.org/downloads/)
   - VS Code com a extensão "Python" (da Microsoft)
 
-As bibliotecas usadas nos exemplos estão listadas no arquivo
-requirements.txt, na raiz do repositório:
+As bibliotecas usadas nos exemplos são:
   numpy          -> operações com matrizes (a imagem é uma matriz)
   matplotlib     -> mostrar e salvar as imagens e gráficos
   scikit-image   -> imagens de exemplo (ex.: data.camera())
@@ -33,7 +32,7 @@ PASSO 2 - Criar o ambiente e instalar as bibliotecas
 
     python3 -m venv .venv
     source .venv/bin/activate
-    pip install -r requirements.txt
+    pip install numpy matplotlib scikit-image opencv-python
 
   Se o primeiro comando der erro de "ensurepip" ou "venv", instale o
   pacote que falta e repita os comandos:
@@ -44,7 +43,7 @@ PASSO 2 - Criar o ambiente e instalar as bibliotecas
 
     py -m venv .venv
     .venv\Scripts\activate
-    pip install -r requirements.txt
+    pip install numpy matplotlib scikit-image opencv-python
 
   Se aparecer erro dizendo que a execução de scripts está desabilitada,
   rode o comando abaixo uma vez e tente ativar de novo:

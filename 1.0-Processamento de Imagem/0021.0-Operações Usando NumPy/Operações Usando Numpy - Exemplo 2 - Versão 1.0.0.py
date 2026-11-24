@@ -3,7 +3,7 @@
 # Importação das Bibliotecas Necessárias
 ########################################################################
 
-# Para rodar:  pip install -r requirements.txt  (ver COMO RODAR.txt)
+# Para rodar:  pip install numpy matplotlib scikit-image opencv-python  (ver COMO_RODAR.txt)
 
 import matplotlib.pyplot as plt
 

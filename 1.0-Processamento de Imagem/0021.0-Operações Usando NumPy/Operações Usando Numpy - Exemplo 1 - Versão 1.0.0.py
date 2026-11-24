@@ -128,7 +128,7 @@ plt.show ()
  
     python3 -m venv .venv
     source .venv/bin/activate
-    pip install -r requirements.txt
+    pip install numpy matplotlib scikit-image opencv-python
  
   Se o primeiro comando der erro de "ensurepip" ou "venv", instale o
   pacote que falta e repita os comandos:
@@ -139,7 +139,7 @@ plt.show ()
  
     py -m venv .venv
     .venv\Scripts\activate
-    pip install -r requirements.txt
+    pip install numpy matplotlib scikit-image opencv-python
  
   Se aparecer erro dizendo que a execução de scripts está desabilitada,
   rode o comando abaixo uma vez e tente ativar de novo:
