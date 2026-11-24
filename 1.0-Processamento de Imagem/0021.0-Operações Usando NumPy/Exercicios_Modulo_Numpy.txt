@@ -1,0 +1,85 @@
+Para esta lista, crie sua própria pasta e siga os mesmos procedimentos descritos no Aviso.txt (pasta 0020),
+ou crie uma pasta dentro de cada módulo e faça ali os seus arquivos para responder aos exercícios.
+
+Antes de começar, instale as bibliotecas como explicado no COMO_RODAR.txt.
+
+Regra deste módulo: NÃO use for para alterar os pixels. Cada exercício se resolve com
+uma ou duas linhas de NumPy, igual ao Exemplo 1 da aula.
+
+###############################################################################
+
+Exercício 1 — Claros viram pretos
+Na aula, os pixels mais escuros que 87 viraram brancos:
+
+    Mascara = imgCamera < 87
+    imgCamera[Mascara] = 255
+
+Agora faça o contrário: os pixels mais CLAROS que 170 devem virar PRETOS.
+
+import matplotlib.pyplot as plt
+from skimage import data
+
+imgCamera = data.camera()
+
+# TODO 1: crie a Mascara com os pixels maiores que 170
+
+# TODO 2: pinte de preto (0) os pixels da Mascara
+
+plt.imshow(imgCamera, cmap="gray", vmin=0, vmax=255)
+plt.show()
+
+Dica: é só trocar o sinal da comparação e o valor que o pixel recebe.
+
+###############################################################################
+
+Exercício 2 — Grade de retas
+Na aula, as linhas eram diagonais. Agora desenhe uma grade de retas pretas:
+linhas horizontais e verticais, a cada 64 pixels.
+
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage import data
+
+imgCamera = data.camera()
+Posicoes = np.arange(0, 512, 64)   # 0, 64, 128, ..., 448
+print(Posicoes)
+
+# TODO 1: pinte de preto as LINHAS dessas posições (retas horizontais)
+
+# TODO 2: pinte de preto as COLUNAS dessas posições (retas verticais)
+
+plt.imshow(imgCamera, cmap="gray", vmin=0, vmax=255)
+plt.show()
+
+Dica: imgCamera[5, :] = 0 pinta a linha 5 inteira e imgCamera[:, 5] = 0 pinta a coluna 5 inteira.
+No lugar do 5 você pode colocar o vetor Posicoes.
+
+###############################################################################
+
+Exercício 3 — Recorte em quadrado
+Na aula, tudo que ficava fora de um círculo virou preto. Agora o recorte será um quadrado
+no centro da imagem.
+
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage import data
+
+imgCamera = data.camera()
+X, Y = np.ogrid[:512, :512]
+Centro = 256
+MeioLado = 150   # metade do lado do quadrado
+
+# Fora na vertical: o pixel está mais de 150 pixels acima ou abaixo do centro
+ForaVertical = np.abs(X - Centro) > MeioLado
+
+# TODO 1: crie ForaHorizontal (mais de 150 pixels à esquerda ou à direita do centro)
+
+# Fora do quadrado: fora na vertical OU fora na horizontal ( | quer dizer "ou")
+MascaraForaQuadrado = ForaVertical | ForaHorizontal
+
+# TODO 2: pinte de preto os pixels de MascaraForaQuadrado
+
+plt.imshow(imgCamera, cmap="gray", vmin=0, vmax=255)
+plt.show()
+
+Dica: o TODO 1 é igual à linha do ForaVertical, trocando o X pelo Y.
