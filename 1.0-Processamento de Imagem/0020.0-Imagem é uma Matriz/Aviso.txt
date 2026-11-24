@@ -1,0 +1,21 @@
+Como rodar os programas
+Antes de rodar qualquer arquivo, é preciso criar e ativar uma venv (ambiente virtual) e instalar as bibliotecas que aparecem nos import no topo do arquivo.
+
+Passo
+Windows (PowerShell)
+Linux
+1. Criar a venv
+    python -m venv venv
+    python3 -m venv venv
+2. Ativar a venv
+    .\venv\Scripts\Activate.ps1
+    source venv/bin/activate
+3. Instalar as bibliotecas
+    pip install opencv-python numpy matplotlib seaborn
+    pip install opencv-python numpy matplotlib seaborn
+Com a venv ativada, o nome (venv) aparece no começo da linha do terminal.
+
+Importante: rode todo programa a partir da pasta ComputerVision, porque os caminhos das imagens nos exemplos (como ./Imagens/Adicao.png) partem dela.
+Exemplo: para rodar o arquivo Imagem Matriz - Exemplo 1 - Versão 1.0.0.py, estando na pasta ComputerVision:
+    python "1.0-Processamento de Imagem/0020.0-Imagem é uma Matriz/Imagem Matriz - Exemplo 1 - Versão 1.0.0.py"
+No Linux, troque python por python3. As aspas são obrigatórias porque o caminho tem espaços.

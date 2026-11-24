@@ -1,0 +1,20 @@
+Para esta lista, crie sua própria pasta e siga os mesmos procedimentos descritos no Aviso.txt,
+ou crie uma pasta dentro de cada módulo e faça ali os seus arquivos para responder aos exercícios.
+ 
+Lembre: rode os programas sempre a partir da pasta ComputerVision (por causa do caminho ./Imagens/).
+
+
+Exercício — Ficha técnica da imagem
+
+Usando o programa "Dados da Imagem" como base, faça um programa que:
+
+
+1. Além da largura, altura e número de canais, mostre também:
+   • o total de pixels da imagem (largura × altura);
+   • o total de números guardados na matriz (largura × altura × canais)
+     → confira se bate com o valor de imgBase.size;
+   • o formato da imagem: "Paisagem" (mais larga que alta), "Retrato" (mais alta que larga)
+     ou "Quadrada".
+2. Leia a MESMA imagem de novo, agora com cv.IMREAD_GRAYSCALE, e imprima o shape das duas versões.
+
+Teste com pelo menos 3 imagens diferentes. Pegue da pasta Imagens e não esqueça da extensão '.png ou .jpg'

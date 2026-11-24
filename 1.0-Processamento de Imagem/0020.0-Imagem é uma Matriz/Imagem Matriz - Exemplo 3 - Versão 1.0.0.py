@@ -79,14 +79,13 @@ Figura.tight_layout()
 Figura.savefig(dirCaminhoOutput1)
 plt.show()
 
-
 # 
 ########################################################################
 # Invertendo a cor da Matriz
 ########################################################################
 #
 
-imgInvertida = imgBase.copy() # Pra não alterar a original
+imgInvertida = imgBase.copy() # Para não alterar a original
 
 for iAux in range(iLinhas):
     for jAux in range(iColunas):
@@ -102,7 +101,7 @@ for iAux in range(iLinhas): # Só escrevendo os valores dos pixel na imagem tal 
 # Grafico.set_axis_off()
 Figura2.tight_layout()
 Figura2.savefig(dirCaminhoOutput2)
-plt.show()
+plt.savefig("1.0-Processamento de Imagem/0020.0-Imagem é uma Matriz/Output/saida_Imagem_Matriz.png")  
 
 ########################################################################
 # FIM DO PROGRAMA
