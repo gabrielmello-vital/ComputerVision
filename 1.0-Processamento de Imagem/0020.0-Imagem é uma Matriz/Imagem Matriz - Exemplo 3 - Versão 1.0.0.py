@@ -85,7 +85,7 @@ plt.show()
 ########################################################################
 #
 
-imgInvertida = imgBase.copy() # Pra não alterar a original
+imgInvertida = imgBase.copy() # Para não alterar a original
 
 for iAux in range(iLinhas):
     for jAux in range(iColunas):
