@@ -1,0 +1,94 @@
+========================================================================
+COMO PREPARAR O AMBIENTE PARA RODAR OS EXEMPLOS
+========================================================================
+
+O que precisa estar instalado antes:
+  - Python 3 (https://www.python.org/downloads/)
+  - VS Code com a extensão "Python" (da Microsoft)
+
+As bibliotecas usadas nos exemplos estão listadas no arquivo
+requirements.txt, na raiz do repositório:
+  numpy          -> operações com matrizes (a imagem é uma matriz)
+  matplotlib     -> mostrar e salvar as imagens e gráficos
+  scikit-image   -> imagens de exemplo (ex.: data.camera())
+  opencv-python  -> processamento de imagem (cv2)
+
+Elas são instaladas dentro de um ambiente virtual (.venv): uma pasta
+só deste projeto, que não mexe no Python do computador. A pasta .venv
+já está no .gitignore, então não vai para o repositório.
+
+------------------------------------------------------------------------
+PASSO 1 - Abrir a pasta certa
+------------------------------------------------------------------------
+No VS Code: File > Open Folder > escolha a pasta ComputerVision
+(a raiz do repositório, NÃO a pasta de uma aula).
+
+Abra o terminal: Terminal > New Terminal.
+
+------------------------------------------------------------------------
+PASSO 2 - Criar o ambiente e instalar as bibliotecas
+------------------------------------------------------------------------
+
+>> LINUX (Ubuntu)
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+
+  Se o primeiro comando der erro de "ensurepip" ou "venv", instale o
+  pacote que falta e repita os comandos:
+
+    sudo apt install python3-venv
+
+>> WINDOWS (PowerShell)
+
+    py -m venv .venv
+    .venv\Scripts\activate
+    pip install -r requirements.txt
+
+  Se aparecer erro dizendo que a execução de scripts está desabilitada,
+  rode o comando abaixo uma vez e tente ativar de novo:
+
+    Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+Quando o ambiente está ativo, aparece (.venv) no começo da linha do
+terminal.
+
+------------------------------------------------------------------------
+PASSO 3 - Avisar o VS Code qual Python usar
+------------------------------------------------------------------------
+Ctrl+Shift+P > "Python: Select Interpreter" > escolha o que tem
+.venv no caminho.
+
+------------------------------------------------------------------------
+PASSO 4 - Testar
+------------------------------------------------------------------------
+No terminal (com o .venv ativo):
+
+    python -c "import numpy, matplotlib, skimage, cv2; print('Tudo certo!')"
+
+Se aparecer "Tudo certo!", é só abrir qualquer exemplo e rodar com o
+botão de play.
+
+------------------------------------------------------------------------
+IMPORTANTE
+------------------------------------------------------------------------
+- Os caminhos dos exemplos começam com "./" (ex.: "./Imagens/Adicao.png"),
+  que quer dizer "a partir da pasta ComputerVision". Por isso o VS Code
+  ou o terminal precisam estar abertos na raiz do repositório.
+  Se aparecer "Não Foi Localizada a Imagem" ou "No such file or
+  directory", confira isso primeiro.
+
+- Erro "No module named ..." quer dizer que o VS Code está usando outro
+  Python. Refaça o Passo 3.
+
+- Ao abrir um terminal novo, ative o ambiente de novo (segunda linha do
+  Passo 2). Para sair do ambiente: deactivate
+
+========================================================================
+
+##Requirements
+numpy
+matplotlib
+scikit-image
+opencv-python
