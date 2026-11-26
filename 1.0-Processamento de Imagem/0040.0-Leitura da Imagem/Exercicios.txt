@@ -1,0 +1,93 @@
+Para esta lista, crie sua própria pasta e siga os mesmos procedimentos descritos no Aviso.txt (pasta 0020),
+ou crie uma pasta dentro de cada módulo e faça ali os seus arquivos para responder aos exercícios.
+
+Antes de começar, instale as bibliotecas como explicado no COMO_RODAR.txt (pasta 0021).
+
+Lembre: rode os programas sempre a partir da pasta ComputerVision (por causa do caminho ./Imagens/).
+
+###############################################################################
+
+Exercício 1 — Lendo outra imagem
+Na aula, a imagem lida foi o Girassol.png. Agora escolha outra imagem da pasta Imagens
+(por exemplo, Farol.jpg ou Bicicleta.jpg) e mostre na janela do OpenCV.
+
+import cv2 as cv
+
+NomeImagem = "Girassol.png"   # TODO 1: troque pelo nome de outra imagem da pasta Imagens
+NomeJanela = "Minha Imagem"
+
+imgBase = cv.imread("./Imagens/" + NomeImagem, cv.IMREAD_COLOR)
+
+if imgBase is None:
+   print("Não Foi Localizada a Imagem : ", NomeImagem)
+   exit()
+
+# TODO 2: imprima o tamanho da imagem (altura, largura e número de canais)
+
+cv.imshow(NomeJanela, imgBase)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+Dica: imgBase.shape devolve (altura, largura, canais). Lembre que, para fechar a janela,
+é preciso apertar uma tecla com ela selecionada.
+
+###############################################################################
+
+Exercício 2 — As cores trocadas
+O OpenCV guarda as cores na ordem B, G, R e o Matplotlib espera R, G, B.
+Neste exercício você vai ver o que acontece quando a conversão é esquecida.
+
+import cv2 as cv
+import matplotlib.pyplot as plt
+
+imgBase = cv.imread("./Imagens/Baloes.jpg", cv.IMREAD_COLOR)
+
+if imgBase is None:
+   print("Não Foi Localizada a Imagem")
+   exit()
+
+# TODO 1: crie a imgRGB convertendo a imgBase de BGR para RGB
+
+Grafico = plt.figure(figsize=(10, 4))
+
+Grafico.add_subplot(1, 2, 1)
+plt.imshow(imgBase)
+plt.title("Sem conversão (BGR)")
+
+Grafico.add_subplot(1, 2, 2)
+plt.imshow(imgRGB)
+plt.title("Com conversão (RGB)")
+
+Grafico.tight_layout()
+plt.show()
+
+# TODO 2: escreva num comentário quais cores ficaram trocadas na imagem da esquerda
+
+Dica: a conversão é feita com cv.cvtColor(imagem, cv.COLOR_BGR2RGB).
+
+###############################################################################
+
+Exercício 3 — Quando a imagem não existe
+O nome da imagem abaixo está escrito errado de propósito (falta um "s" em Girassol).
+O OpenCV e o scikit-image avisam esse problema de jeitos diferentes:
+  - cv.imread não dá erro: devolve None
+  - io.imread dá erro (FileNotFoundError)
+
+import cv2 as cv
+from skimage import io
+
+NomeImagem = "Girasol.png"
+dirCaminhoImagem = "./Imagens/" + NomeImagem
+
+# Parte A — OpenCV
+imgCV = cv.imread(dirCaminhoImagem, cv.IMREAD_COLOR)
+
+# TODO 1: se imgCV for None, imprima "OpenCV: imagem não encontrada"
+
+# Parte B — scikit-image
+# TODO 2: leia a imagem com io.imread dentro de um try. Se der FileNotFoundError,
+#         imprima "scikit-image: imagem não encontrada"
+
+Dica: os arquivos da aula usam exatamente essas duas estruturas. Se o seu programa
+imprimir as duas mensagens, deu certo! Depois corrija o nome para "Girassol.png"
+e rode de novo: nenhuma mensagem deve aparecer.
